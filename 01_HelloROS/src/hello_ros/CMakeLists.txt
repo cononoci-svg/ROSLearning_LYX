@@ -14,6 +14,10 @@ add_executable(hello_ros_pub_node src/hello_ros_pub_node.cpp)
 ament_target_dependencies(hello_ros_pub_node rclcpp std_msgs)
 install(TARGETS hello_ros_pub_node DESTINATION lib/${PROJECT_NAME})
 
+add_executable(hello_ros_sudo_node src/hello_ros_sub_node.cpp)
+ament_target_dependencies(hello_ros_sub_node rclcpp std_msgs)
+install(TARGETS hello_ros_sub_node DESTINATION lib/${PROJECT_NAME})
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
