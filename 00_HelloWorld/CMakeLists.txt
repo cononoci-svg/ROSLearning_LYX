@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.10)
+project(HelloWorld_Project)
+set(CMAKE_CXX_STANDARD 17)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
+include_directories(include)
+add_executable(HelloWorld main.cpp src/HelloWorld.cpp)
