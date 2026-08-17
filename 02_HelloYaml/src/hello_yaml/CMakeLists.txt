@@ -14,6 +14,7 @@ add_executable(yaml_pub_node src/yaml_pub_node.cpp)
 ament_target_dependencies(yaml_pub_node rclcpp std_msgs)
 
 install(TARGETS yaml_pub_node DESTINATION lib/${PROJECT_NAME})
+install(DIRECTORY launch config DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
