@@ -1,21 +1,24 @@
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
+
+#include "hello_ros_msgs/msg/robot_pose_msg.hpp"
 
 class HelloSubscriber : public rclcpp::Node {
 public:
   HelloSubscriber() : Node("hello_ros_sub_node") {
-    sub_ = this->create_subscription<std_msgs::msg::String>(
-      "my_topic", 10, std::bind(&HelloSubscriber::topic_callback, this, std::placeholders::_1));
+    sub_ = this->create_subscription<hello_ros_msgs::msg::RobotPoseMsg>(
+      "robot_pose", 10, std::bind(&HelloSubscriber::topic_callback, this, std::placeholders::_1));
   }
 
 private:
-  void topic_callback(const std_msgs::msg::String::SharedPtr msg) const {
-    RCLCPP_INFO(this->get_logger(), "收到消息: '%s'", msg->data.c_str());
+  void topic_callback(const hello_ros_msgs::msg::RobotPoseMsg::SharedPtr msg) const {
+    if (msg->angles.data.size() >= 3) {
+      RCLCPP_INFO(this->get_logger(), "收到数据: x=%.2f, yaw=%.2f", msg->x, msg->angles.data[2]);
+    }
   }
 
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr sub_;
+  rclcpp::Subscription<hello_ros_msgs::msg::RobotPoseMsg>::SharedPtr sub_;
 };
 
 int main(int argc, char * argv[]) {
