@@ -1,0 +1,5 @@
+yaml_pub_node:
+  ros__parameters:
+    initial_x: 10.5
+    initial_y: 20.0
+    initial_z: -5.2
